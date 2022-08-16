@@ -1,30 +1,19 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> freq;
-
-    // counting the frequency of each character
-    for(const char &c : s)
-        ++freq[c];
-
-
-    // multimap allows duplicate keys (if 2 or more chars have same freq, they will not cause collision)
-    // greater<int> make it sorted in decreasing order
-    multimap<int, char, greater<int>> sorted;
-
-    // sorting according to the frequency (as map stores in sorted order)
-    for(auto &it : freq)
-        sorted.insert({it.second, it.first});
-
-    string ans = "";
-
-    for(auto &it : sorted) {
-        int i = it.first; // freq of char
-
-        while(i--) 
-            ans.push_back(it.second); // push that char freq time in ans string
-    }
-
-    return ans;
+        unordered_map<char,int>m;
+        for(auto x:s)m[x]++;
+        multimap<int,char,greater<int>>mp;
+        for(auto x:m)
+            mp.insert({x.second,x.first});
+        
+        string res="";
+        for(auto x:mp){
+            int i = x.first;
+            while(i--){
+                res.push_back(x.second);
+            }
+        }
+        return res;
     }
 };
