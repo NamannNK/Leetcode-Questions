@@ -1,18 +1,30 @@
-bool mycmp(const string &s1,const string &s2){
-    return s1.length()>s2.length();
-}
 class Solution {
 public:
     string frequencySort(string s) {
-        vector<string>v(256,"");
-        for(auto x:s)
-            v[x-'0']+= x;
-        sort(v.begin(),v.end(),mycmp);
-        int i=0;
-        string res="";
-        for(auto str: v){
-            res+= str;
-        }
-        return res;
+        unordered_map<char, int> freq;
+
+    // counting the frequency of each character
+    for(const char &c : s)
+        ++freq[c];
+
+
+    // multimap allows duplicate keys (if 2 or more chars have same freq, they will not cause collision)
+    // greater<int> make it sorted in decreasing order
+    multimap<int, char, greater<int>> sorted;
+
+    // sorting according to the frequency (as map stores in sorted order)
+    for(auto &it : freq)
+        sorted.insert({it.second, it.first});
+
+    string ans = "";
+
+    for(auto &it : sorted) {
+        int i = it.first; // freq of char
+
+        while(i--) 
+            ans.push_back(it.second); // push that char freq time in ans string
+    }
+
+    return ans;
     }
 };
