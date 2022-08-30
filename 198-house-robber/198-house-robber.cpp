@@ -9,7 +9,19 @@ public:
         return dp[i] = max(pick,notpick);
     }
     int rob(vector<int>& nums) {
-        vector<int>dp(nums.size()+1,-1);
-        return solve(nums.size()-1,nums,dp);
+        vector<int>dp(nums.size(),-1);
+        //return solve(nums.size()-1,nums,dp);
+        dp[0] = nums[0];
+        for(int i=1;i<nums.size();i++){
+            int res = INT_MIN;
+            if(i>1){
+                res = max(res,nums[i]+dp[i-2]);
+            }
+            else{
+                res = max(res,nums[i]);
+            }
+            dp[i] = max(res,dp[i-1]);
+        }
+        return dp[nums.size()-1];
     }
 };
