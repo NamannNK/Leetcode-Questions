@@ -11,13 +11,10 @@ class Solution {
   public:
     bool arraySortedOrNot(int arr[], int n) {
         // code here
-        vector<int>main,temp;
-        for(int i=0;i<n;i++){
-            main.push_back(arr[i]);
-            temp.push_back(arr[i]);
+        for(int i=1;i<n;i++){
+            if(arr[i]<arr[i-1])return false;
         }
-        sort(temp.begin(),temp.end());
-        return main==temp;
+        return true;
     }
 };
 
