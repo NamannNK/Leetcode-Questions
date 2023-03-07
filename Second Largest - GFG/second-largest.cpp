@@ -12,7 +12,7 @@ public:
 	int print2largest(int arr[], int n) {
 	    // code here
 	    sort(arr,arr+n);
-	    if(arr[n-2]!=arr[n-1])return arr[n-2];
+	   // if(arr[n-2]!=arr[n-1])return arr[n-2];
 	    int i=n-2;
 	    while(i>=0 && arr[i+1]==arr[i]){
 	        i--;
