@@ -17,7 +17,7 @@ public:
 	            secondmaxi = maxi;
 	            maxi = arr[i];
 	        }
-	        else if(arr[i]>secondmaxi && arr[i]!=maxi){
+	        else if(arr[i]>secondmaxi && arr[i]<maxi){
 	            secondmaxi = arr[i];
 	        }
 	    }
